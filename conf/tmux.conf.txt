@@ -1,0 +1,56 @@
+set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+## Join windows: <prefix> s, <prefix> j
+bind-key j command-prompt -p "join pane from:"  "join-pane -s '%%'"
+bind-key s command-prompt -p "send pane to:"  "join-pane -t '%%'"
+
+# # Set the terminal type so colors get rendered correctly
+set -g default-terminal "screen-256color"
+#
+# # Powerline settings
+set -g status on
+set -g status-interval 2
+set -g status-justify "centre"
+#
+# # History setting
+set -g history-limit 10000
+#
+# # tmux messages are displayed for 4 seconds
+set -g display-time 4000
+#
+# # Start pane numbering at 1
+set -g base-index 1
+#
+# # Ctrl-R: Reload tmux config
+bind r source-file ~/.tmux.conf \; display 'Config reloaded test'
+#
+# # Ctrl-Arrow: Resize panes
+bind -r C-Up resize-pane -U
+bind -r C-Down resize-pane -D
+bind -r C-Left resize-pane -L
+bind -r C-Right resize-pane -R
+bind -n C-Up resize-pane -U
+bind -n C-Down resize-pane -D
+bind -n C-Left resize-pane -L
+bind -n C-Right resize-pane -R
+bind -r C-Left resize-pane -L
+bind -r C-Right resize-pane -R
+#
+# # Alt-h: Previous window
+bind -n M-h prev
+# # Alt-l: Next window
+bind -n M-l next
+#
+setw -g xterm-keys on
+
+unbind C-b
+set -g prefix `
+bind ` send-prefix
+
+# Highlight active window
+set-window-option -g window-status-current-bg red
+
+set-option -g -q mouse on
+bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
+bind-key -t vi-copy PPage page-up
+bind-key -t vi-copy NPage page-down
+

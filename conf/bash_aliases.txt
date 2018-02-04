@@ -1,0 +1,7 @@
+alias gp='git push'
+alias gpl='git pull'
+alias gc='git commit -m'
+alias ga='git add'
+alias gs='git status'
+alias gf='git fetch'
+
