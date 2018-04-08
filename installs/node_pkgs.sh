@@ -1,1 +1,1 @@
-sudo npm install phantomjs casperjs nodemon bower grunt gulp -g
+sudo npm install nodemon diff-so-fancy -g
